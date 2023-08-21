@@ -13,7 +13,7 @@ import ImageViewer from "./imagesViewer";
 
 
 async function fetchProductDetails() {
-    const d = await fetch("/api/product");
+    const d = await fetch("http://localhost:3000/api/product");
 
     return d.json();
 }

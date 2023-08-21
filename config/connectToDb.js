@@ -11,7 +11,7 @@ async function connect() {
     //     return;
     // }
     try {
-        await mongoose.connect("mongodb+srv://AreebQamar:MAAZjaRIEP7Gp04e@cluster0.ll5dhx9.mongodb.net/?retryWrites=true&w=majority");
+        await mongoose.connect(MONGODB_URI);
         console.log("Connected to MongoDB.");
     } catch (error) {
         console.log(error);

@@ -27,7 +27,7 @@ export default async function DataTable() {
 
 
     const data = await fetchData();
-    console.log(data);
+    //console.log(data);
 
 
     return (

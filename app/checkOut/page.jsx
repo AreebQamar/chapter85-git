@@ -30,7 +30,7 @@ function Subtract({ key, cart, remove }) {
 
 
 async function fetchProductDetails() {
-    const d = await fetch("/api/user");
+    const d = await fetch("https://chapter85-887j3tw5o-areebqamar.vercel.app/api/user");
 
     return d.json();
 }

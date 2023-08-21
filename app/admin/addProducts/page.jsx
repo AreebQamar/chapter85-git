@@ -54,7 +54,7 @@ export default function AdminAddProductsPage() {
             // console.log(description);
 
             try {
-                const { data } = await axios.post("/api/product", {
+                const { data } = await axios.post("https://chapter85-887j3tw5o-areebqamar.vercel.app/api/product", {
                     v: varients,
                     imgs,
                     productId,

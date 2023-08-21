@@ -30,7 +30,7 @@ function Subtract({ key, cart, remove }) {
 
 
 async function fetchProductDetails() {
-    const d = await fetch("http://localhost:3000/api/user");
+    const d = await fetch("/api/user");
 
     return d.json();
 }

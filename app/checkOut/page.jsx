@@ -1,41 +1,41 @@
-"use client"
+// "use client"
 
-import Link from 'next/link'
-import { MdAddCircle, MdRemoveCircle } from 'react-icons/md'
+// import Link from 'next/link'
+// import { MdAddCircle, MdRemoveCircle } from 'react-icons/md'
 
-import { useContext, useState, use, useEffect } from "react"
-import { useSession } from "next-auth/react";
-import { CartContext } from "@/context/cartContext"
+// import { useContext, useState, use, useEffect } from "react"
+// import { useSession } from "next-auth/react";
+// import { CartContext } from "@/context/cartContext"
 
-import { AiOutlineWarning } from "react-icons/ai"
+// import { AiOutlineWarning } from "react-icons/ai"
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
-import axios from "axios";
+// import axios from "axios";
 
-function Add({ key, cart, addToCart }) {
-    return (
-        <div>+</div>
-    )
-}
-function Subtract({ key, cart, remove }) {
-    return (
-        <div>-</div>
-    )
-}
+// function Add({ key, cart, addToCart }) {
+//     return (
+//         <div>+</div>
+//     )
+// }
+// function Subtract({ key, cart, remove }) {
+//     return (
+//         <div>-</div>
+//     )
+// }
 
 
 
-async function fetchProductDetails() {
-    const d = await fetch("http://localhost:3000/jackets/api/user");
+// async function fetchProductDetails() {
+//     const d = await fetch("http://localhost:3000/jackets/api/user");
 
-    return d.json();
-}
+//     return d.json();
+// }
 
-const dataPromis = fetchProductDetails();
+// const dataPromis = fetchProductDetails();
 
 export default function CheckOutPage() {
 

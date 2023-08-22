@@ -251,5 +251,3 @@ export default function CheckOutPage() {
     )
 
 }
-
-transform transition-transform translate-x-full

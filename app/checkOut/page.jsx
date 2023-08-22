@@ -1,6 +1,5 @@
 "use client"
 
-import Link from 'next/link'
 import { MdAddCircle, MdRemoveCircle } from 'react-icons/md'
 
 import { useContext, useState, use, useEffect } from "react"
@@ -141,7 +140,6 @@ export default function CheckOutPage() {
         }
     }
 
-    // <h1>you will soon be able to check out</h1>
     return (
         <div className='m-2'>
             <ToastContainer />
@@ -248,6 +246,7 @@ export default function CheckOutPage() {
                 Place order
             </button>
         </div>
-    )
+    );
 
 }
+

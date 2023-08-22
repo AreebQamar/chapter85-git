@@ -29,6 +29,8 @@ export default function ProductDetailPage({ id }) {
     const products = data.Products;
     const thisProduct = products.filter((product) => product._id === id)[0];
 
+    //console.log(thisProduct);
+
     const addToCartButtonHandler = () => {
         //console.log(selection);
         if (selection?.selectedColor && selection?.selectedSize) {

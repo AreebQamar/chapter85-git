@@ -26,8 +26,6 @@ export default function ProductDetailPage({ id }) {
     const { addToCart } = useContext(CartContext);
 
     const data = use(dataPromis);
-    console.log(data);
-
     const products = data.Products;
     const thisProduct = products.filter((product) => product._id === id)[0];
 

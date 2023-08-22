@@ -75,6 +75,7 @@ export default function ProductDetailPage({ id }) {
    
 
     return (
+        // <h1>hello check out</h1>
 
         <section className="text-gray-600 body-font overflow-hidden">
 

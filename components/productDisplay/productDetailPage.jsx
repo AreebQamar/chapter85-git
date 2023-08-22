@@ -13,7 +13,7 @@ import ImageViewer from "./imagesViewer";
 
 
 async function fetchProductDetails() {
-    const d = await fetch(`${process.env.BASE_URL}/api/product`);
+    const d = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product`);
 
     return d.json();
 }

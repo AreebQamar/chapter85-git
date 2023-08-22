@@ -141,8 +141,8 @@ export default function CheckOutPage() {
         }
     }
 
+    // <h1>you will soon be able to check out</h1>
     return (
-        // <h1>you will soon be able to check out</h1>
         <div className='m-2'>
             <ToastContainer />
             <div className='font-bold text-xl'>Shipping details</div>

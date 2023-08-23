@@ -44,9 +44,9 @@ export default function CheckOutPage() {
 
     const users = data.Users;
     console.log(users);
-     const thisUser = users?.filter((user) => user.email === session?.user.email)[0];
+     //const thisUser = users?.filter((user) => user.email === session?.user.email)[0];
 
-    console.log(thisUser);
+    //console.log(thisUser);
 
     // const router = useRouter();
 

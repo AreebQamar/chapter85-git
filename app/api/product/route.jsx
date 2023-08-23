@@ -11,7 +11,7 @@ export async function POST(request) {
 }
 
 export async function GET(request) {
-  console.log("api says: ", request);
+ // console.log("api says: ", request);
 
   //const { catagory } = request.query;
 

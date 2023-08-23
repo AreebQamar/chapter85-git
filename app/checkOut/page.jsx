@@ -29,7 +29,7 @@ function Subtract({ key, cart, remove }) {
 
 
 async function fetchProductDetails() {
-    const d = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product`);
+    const d = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
 
     return d.json();
 }
@@ -39,23 +39,17 @@ const dataPromis = fetchProductDetails();
 export default function CheckOutPage() {
 
     const { data: session } = useSession();
-    //console.log(session);
-   // const data = use(dataPromis);
 
-   // const users = data.Users;
-   // console.log(users);
-    
-    //var thisUser;
+    const data = use(dataPromis);
+    const users = data.Users;
+    const thisUser = users?.filter((user) => user.email === session?.user.email)[0];
 
-    //(session)
-       // thisUser = users?.filter((user) => user.email === session?.user.email)[0];
-
-   // console.log(thisUser);
 
     const router = useRouter();
 
-    //console.log(cart, netTotal, addToCart, reduceQuantity);
     const { cart, netTotal, addToCart, reduceQuantity, clearCart } = useContext(CartContext);
+
+    console.log(cart);
 
     //console.log(cart.varient);
 
@@ -75,9 +69,9 @@ export default function CheckOutPage() {
         else {
             setDisabled(true);
         }
-        
+
         // console.log(disabled, address, province, city);
-    },[address, city, province])
+    }, [address, city, province])
 
 
     const handlePlaceOrder = async (cart) => {
@@ -92,7 +86,9 @@ export default function CheckOutPage() {
 
                 const productId = keys[i];
                 const qty = cart[keys[i]].qty;
-                const size = cart[keys[i]].varient;
+                const size = JSON.stringify(cart[keys[i]].varient);
+
+                console.log(size);
 
                 products.push({ productId, qty, size });
             }
@@ -101,11 +97,11 @@ export default function CheckOutPage() {
             try {
                 const data = await axios.post("/api/order", {
 
-                    //email: thisUser.email,
-                    //phone: thisUser.phone,
+                    email: thisUser.email,
+                    phone: thisUser.phone,
 
-                    email: "dummy email",
-                    phone: "1234567890010",
+                    //email: "dummy email",
+                    //phone: "1234567890010",
 
                     province,
                     city,
@@ -214,7 +210,8 @@ export default function CheckOutPage() {
                                     Object.keys(cart).map((key) =>
                                         <div key={key} className="m-1 p-1 bg-yellow-50 border borfer-slate-200 rounded ">
                                             <div>{cart[key].name}</div>
-                                            <div>{cart[key].varient}</div>
+                                            <div>{cart[key].varient?.selectedColor}</div>
+                                            <div>{cart[key].varient?.selectedSize}</div>
                                             <div>{cart[key].price}</div>
                                             <div className="flex justify-center items-center">
                                                 <div onClick={function () { addToCart(key, cart[key].name, cart[key].varient, cart[key].price) }}>

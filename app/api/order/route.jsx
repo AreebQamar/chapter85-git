@@ -4,7 +4,7 @@ import db from "@/config/connectToDb"
 
 export async function POST(request) {
   const { products, status,  email, phone, province, city, address } = await request.json();
-  console.log("req: ", products, status,  email, phone, province, city, address);
+  //console.log("req: ", products, status,  email, phone, province, city, address);
   await db.connect();
   await Order.create({ products, status,  email, phone, province, city, address  });
   return NextResponse.json({ message: "Order Created" }, { status: 201 });

@@ -4,7 +4,7 @@ import db from "@/config/connectToDb"
 
 export async function POST(request) {
   const { name, email, phone, password, role } = await request.json();
-  console.log("req: ", name, email, phone, password, role);
+  //console.log("req: ", name, email, phone, password, role);
   await db.connect();
   await User.create({ name, email, phone, password, role });
   return NextResponse.json({ message: "User Created" }, { status: 201 });
@@ -12,7 +12,7 @@ export async function POST(request) {
 
 export async function PUT(request){
   const {name, email, password} = await request.json();
-  console.log("req: ", name, email, password);
+  //console.log("req: ", name, email, password);
 
   await db.connect();
 

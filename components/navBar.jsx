@@ -70,12 +70,16 @@ export default function NavBar() {
 
     const { data: session } = useSession();
 
-const handleCloseCart = ()=>{
-    setShowCart(false);
-}
-
+    const handleCloseCart = () => {
+        setShowCart(false);
+    }
+   
     return (
         <div className="text-gray-600 body-font bg-gradient-to-b from-slate-300 flex flex-col p-1 px-5 md:flex-row justify-between items-center">
+           
+            
+           
+           
             <Link className="justify-items-center flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
                 href='/'>
                 <Image className="text-white p-px bg-gray-700 rounded-full "
@@ -114,7 +118,7 @@ const handleCloseCart = ()=>{
                     onClick={() => setShowCart(!showChart)} />
             </div>
             {
-                showChart && <Cart handleCloseCart = {handleCloseCart} />
+                showChart && <Cart handleCloseCart={handleCloseCart} />
             }
             {
                 ShowMenu && <DropDown />

@@ -1,20 +1,10 @@
-
-
-
 import Order from "@/models/order";
 import db from "@/config/connectToDb"
 import Link from "next/link";
 
 
-
-
-
-
-
 export async function fetchData() {
-
     //console.log(catagory);
-
     await db.connect();
     const orders = await Order.find();
     return (orders);
@@ -23,12 +13,8 @@ export async function fetchData() {
 
 export default async function DataTable() {
 
-  
-
-
     const data = await fetchData();
     //console.log(data);
-
 
     return (
         <div className="container mx-auto p-4">

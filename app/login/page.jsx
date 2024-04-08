@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { useState} from "react"
+import { useState } from "react"
 
-import {signIn} from "next-auth/react"
+import { signIn } from "next-auth/react"
 
 import { useRouter } from 'next/navigation';
 
@@ -72,6 +72,19 @@ export default function LogInPage() {
 
 
                     Don't have an account? <Link className="text-blue-800" href="/register">Register</Link>
+                    <div className="my-2 p-2 border-2 border-black rounded-m bg-cyan-300 text-black">
+                        <h1 className="text-xl font-bold">Test Admin account</h1>
+                        <div className="flex">
+
+                            <div className="font-bold mr-2">username:</div>
+                            <div>testAdmin@whatever.com</div>
+                        </div>
+                        <div className="flex">
+
+                            <div className="font-bold mr-2">password:</div>
+                            <div>admin123</div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
 
     const {OTP, email} =  await req.json();
-    //console.log("req: ", OTP, email);
+    // console.log("req: ", OTP, email);
     try {
         await transporter.sendMail({
             ...mailOptions,

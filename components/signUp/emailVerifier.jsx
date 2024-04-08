@@ -8,7 +8,7 @@ import axios from "axios";
 
 
 
-export default function EmailVerifier({ email, setIsEmailVerified }) {
+export default function EmailVerifier({ email, setIsEmailVerified, closePopUp }) {
 
 
     const [OTP, setOTP] = useState("");
@@ -32,7 +32,7 @@ export default function EmailVerifier({ email, setIsEmailVerified }) {
         const randomNumber = Math.floor(Math.random() * 9000) + 1000
         setEmailOTP_Orignal(randomNumber);
 
-        //console.log("reg page: ", randomNumber);
+        //console.log("reg page: ", randomNumber, "email: ", email);
         await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/mail`, {
             OTP: randomNumber,
             email
@@ -75,9 +75,15 @@ export default function EmailVerifier({ email, setIsEmailVerified }) {
 
         <div className=" backdrop-blur fixed inset-0 flex items-center justify-center">
 
-
             <div className="bg-cyan-950 p-6 w-1/2 flex flex-col mx-auto rounded-xl border-2 border-slate-800" >
 
+                <div className="flex justify-end">
+                    <div className="px-2 border rounded hover:cursor-pointer"
+                        onClick={closePopUp}
+                    >
+                        x
+                    </div>
+                </div>
                 <div className="m-1">
                     <label htmlFor="OTP" className="leading-7 text-sm text-gray-400">Verify Email</label>
                     <input type="OTP" id="OTP" name="OTP" placeholder="OTP"

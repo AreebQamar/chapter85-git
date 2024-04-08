@@ -44,8 +44,8 @@ export default function RegisterPage() {
 
         if (password === confirmPassword) {
 
-            setRenderVerifier(1);
-        }
+            setRenderVerifier(true);
+            }
         else {
             console.log(password, confirmPassword);
             alert("passwords don't match. Try again!");
@@ -84,7 +84,8 @@ export default function RegisterPage() {
     useEffect(function () {
         registerUser();
 
-    }, [isEmailVerified])
+    }, [isEmailVerified]);
+
     return (
         <section className="text-gray-400 bg-gray-900 body-font">
 
@@ -154,7 +155,7 @@ export default function RegisterPage() {
 
             {
                 renderVerifier && (
-                    <EmailVerifier email={email} setIsEmailVerified={setIsEmailVerified} />
+                    <EmailVerifier email={email} setIsEmailVerified={setIsEmailVerified} closePopUp={closePopUp}/>
                 )
 
             }

@@ -4,7 +4,7 @@ import './globals.css';
 
 import NextNProgress from "nextjs-progressbar";
 
-import NavBar from '@/components/navBar';
+import NavBar from '@/components/header/navBar';
 import Footer from "@/components/footer"
 
 

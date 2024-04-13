@@ -31,7 +31,6 @@ export default function LogInPage() {
             else {
                 alert("wrong email or password.");
             }
-            console.log("log in page: ", data);
         } catch (error) {
             console.log(error);
         }
@@ -66,7 +65,7 @@ export default function LogInPage() {
                         </div>
 
                         <div className="my-7 w-full">
-                            <button className="flex mx-auto text-white bg-orange-700 border-0 py-2 px-8 focus:outline-none hover:bg-orange-600 rounded text-lg">Button</button>
+                            <button className="flex mx-auto text-white bg-orange-700 border-0 py-2 px-8 focus:outline-none hover:bg-orange-600 rounded text-lg">Log In</button>
                         </div>
                     </form>
 

@@ -1,59 +1,57 @@
-//hello wold
-import Image from "next/image"
-import Link from "next/link"
+"use client"
 
-import Product from "@/models/product";
-import db from "@/config/connectToDb"
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import DisplayCard from './displayCard';
 
-import axios from "axios"
 
-export async function fetchData(catagory) {
+import axios from 'axios';
+import LoadingDisplayCard from './loadingCard';
 
-    //console.log(catagory);
-
-    await db.connect();
-    const Products = await Product.find({catagory: catagory});
-    return (Products);
+async function fetchProducts(category) {
+  try {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product?category=${category}`);
+    return response.data.Products;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return [];
+  }
 }
 
+export default function CategoryPage({ category }) {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchAndSetProducts = async () => {
+      const fetchedProducts = await fetchProducts(category);
+      setProducts(fetchedProducts);
+      setLoading(false);
+    };
+    
+    fetchAndSetProducts();
+  }, [category]);
 
-
-export default async function CatagoryPage({catagory}) {
-    const data = await fetchData(catagory);
-
-
-    return (
-        <section className=" text-gray-600 body-font">
-
-            <div className="my-5 mx-5 flex flex-wrap justify-center">
-
-                {
-                    data.map(product =>
-                        <div key = {product.id} className="bg-white my-10 mx-4 w-11/12 lg:w-1/4 md:w-1/3 shadow-2xl">
-                            
-                            <Link
-                                href={`/${catagory}/${product._id}`}>
-                                <Image
-                                    alt="ecommerce" src={product.imgs[0]}
-                                    height={300}
-                                    width={150} />
-                            </Link>
-                            <div className="p-4 bg-slate-100">
-                                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">{product.catagory}</h3>
-                                <h2 className="text-gray-900 title-font text-lg font-medium">{product.title}</h2>
-                                <p className="mt-1">PKR {product.price}</p>
-                            
-                            </div>
-                        </div>
-                    )
-
-                }
-
-
-            </div>
-
-        </section>
-    )
+  return (
+    <section className="text-gray-600 body-font">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 mt-4 px-10 md:px-10">{category}</h2>
+      <div className="flex flex-wrap justify-center space-y-4 space-x-4">
+        {
+          loading ? (
+            Array.from({ length: 10 }).map((_, index) => (
+              <LoadingDisplayCard key={index}/>
+            ))
+          ) : products?.length > 0 ? (
+            products.map((product) => (
+              <Link href={`/category/${category}/${product._id}`} key={product._id}>
+                <DisplayCard product={product} />
+              </Link>
+            ))
+          ) : (
+            <p>No products found.</p>
+          )
+        }
+      </div>
+    </section>
+  );
 }
-

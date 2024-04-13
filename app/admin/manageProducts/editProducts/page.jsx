@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 async function fetchProducts() {
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`, { cache: 'no-store' });
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product`, { cache: 'no-store' });
     const data = await response.json();
 
     return data.products

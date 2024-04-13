@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Loading() {
+export default function LoadingPage() {
     return (
         <section className="text-gray-600 flex justify-center">
             <div className="container px-5 p-8">

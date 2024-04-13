@@ -37,7 +37,6 @@ export async function GET(request) {
 
     // Use category in the database query to filter products
     const products = await Products.find(dynamicParams).limit(limit); // Modify this based on your database query syntax
-
     // Respond with a JSON containing the filtered products
     return NextResponse.json({ products });
   } catch (error) {

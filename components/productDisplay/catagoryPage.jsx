@@ -11,7 +11,7 @@ import LoadingDisplayCard from './loadingCard';
 async function fetchProducts(category) {
   try {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product?category=${category}`);
-    return response.data.Products;
+    return response.data.products;
   } catch (error) {
     console.error('Error fetching products:', error);
     return [];
@@ -41,7 +41,7 @@ export default function CategoryPage({ category }) {
             Array.from({ length: 10 }).map((_, index) => (
               <LoadingDisplayCard key={index}/>
             ))
-          ) : products?.length > 0 ? (
+          ) : products.length > 0 ? (
             products.map((product) => (
               <Link href={`/category/${category}/${product._id}`} key={product._id}>
                 <DisplayCard product={product} />

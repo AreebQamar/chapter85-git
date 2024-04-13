@@ -67,7 +67,7 @@ export default function AdminAddProductsPage() {
             // console.log(description);
 
             try {
-                const { data } = await axios.post("/api/products", {
+                const { data } = await axios.post("/api/product", {
                     imgs,
                     productId,
                     title,

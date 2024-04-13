@@ -14,7 +14,6 @@ export default async function OderDetailsPage({ params: { id } }) {
 
     const data = (await fetchData(id))[0];
 
-    console.log(data.products);
 
     return (
         <div className="m-2">

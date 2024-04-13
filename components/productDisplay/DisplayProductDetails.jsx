@@ -24,7 +24,7 @@ async function fetchProductDetails(productId) {
 
 
 export default function DisplayProductDetails({ id }) {
-    // const [selection, setSelection] = useState();
+    const [selection, setSelection] = useState();
 
     const { addToCart } = useContext(CartContext);
     const [productDetails, setProductDetails] = useState();

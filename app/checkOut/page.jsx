@@ -1,42 +1,48 @@
-"use client"
+// "use client"
 
-import { MdAddCircle, MdRemoveCircle } from 'react-icons/md'
+// import { MdAddCircle, MdRemoveCircle } from 'react-icons/md'
 
-import { useContext, useState, use, useEffect } from "react"
-import { useSession } from "next-auth/react";
-import { CartContext } from "@/context/cartContext"
+// import { useContext, useState, use, useEffect } from "react"
+// import { useSession } from "next-auth/react";
+// import { CartContext } from "@/context/cartContext"
 
-import { AiOutlineWarning } from "react-icons/ai"
+// import { AiOutlineWarning } from "react-icons/ai"
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
-import axios from "axios";
+// import axios from "axios";
 
-function Add({ key, cart, addToCart }) {
-    return (
-        <div>+</div>
-    )
-}
-function Subtract({ key, cart, remove }) {
-    return (
-        <div>-</div>
-    )
-}
+// function Add({ key, cart, addToCart }) {
+//     return (
+//         <div>+</div>
+//     )
+// }
+// function Subtract({ key, cart, remove }) {
+//     return (
+//         <div>-</div>
+//     )
+// }
 
 
 
-async function fetchProductDetails() {
-    const d = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
+// async function fetchProductDetails() {
+//     const d = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
 
-    return d.json();
-}
+//     return d.json();
+// }
 
-const dataPromis = fetchProductDetails();
+// const dataPromis = fetchProductDetails();
 
 export default function CheckOutPage() {
+
+    return (
+        <div>
+            we wre not accepting orders as of right now
+        </div>
+    )
 
     const { data: session } = useSession();
 
@@ -49,7 +55,7 @@ export default function CheckOutPage() {
 
     const { cart, netTotal, addToCart, reduceQuantity, clearCart } = useContext(CartContext);
 
-    console.log(cart);
+    // console.log(cart);
 
     //console.log(cart.varient);
 

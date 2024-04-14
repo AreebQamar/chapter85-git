@@ -1,24 +1,39 @@
-import Order from "@/models/order";
-import db from "@/config/connectToDb"
+"use client"
 
-export async function fetchData(id) {
+import axios from 'axios';
 
-    //console.log(catagory);
+import { useEffect, useState } from "react";
 
-    await db.connect();
-    const orders = await Order.find({ _id: id });
-    return (orders);
-}
-
+async function fetchOrders() {
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/order`, { headers: { 'Cache-Control': 'no-store' } });
+      console.log(response.data);
+      return response.data.Orders;
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      return [];
+    }
+  }
 export default async function OderDetailsPage({ params: { id } }) {
 
-    const data = (await fetchData(id))[0];
+    const [orders, setorders] = useState([]);
 
-    console.log(data.products);
+    useEffect(() => {
+        const fetchAndSetOrders = async () => {
+          const fetchedOrders = await fetchOrders();
+          setorders(fetchedOrders);
+         
+        };
+    
+        fetchAndSetOrders();
+        console.log(orders)
+      }, []);
+    
 
     return (
         <div className="m-2">
-            <h1 className="text-2xl grid justify-items-center font-bold py-5">Order's Detal Page</h1>
+            hello in more details
+            {/* <h1 className="text-2xl grid justify-items-center font-bold py-5">Order's Detal Page</h1>
 
             <div className="flex bg-slate-200 rounded p-2">
                 <h1 className="font-bold mr-1">ID: </h1>
@@ -81,7 +96,7 @@ export default async function OderDetailsPage({ params: { id } }) {
                         </div>
                     </div>
                 ))
-            }
+            } */}
 
         </div>
     )

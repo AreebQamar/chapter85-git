@@ -91,7 +91,7 @@ export default function ProductEdit() {
         // Send a POST request to update the product details
         // console.log(updatedProduct);
 
-        axios.put('/api/products', updatedProduct)
+        axios.put('/api/product', updatedProduct)
             .then((response) => {
                 // console.log('Product updated:', response.data.message);
                 toast.success('Product Updated',

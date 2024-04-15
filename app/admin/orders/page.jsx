@@ -16,7 +16,7 @@ async function fetchOrders() {
 }
 
 
-export default async function DataTable() {
+export default function DataTable() {
 
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -29,8 +29,6 @@ export default async function DataTable() {
         };
 
         fetchAndSetOrders();
-        console.log(orders);
-        console.log(loading);
     }, []);
 
 

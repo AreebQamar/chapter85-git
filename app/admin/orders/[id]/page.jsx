@@ -14,7 +14,7 @@ async function fetchOrders() {
       return [];
     }
   }
-export default async function OderDetailsPage({ params: { id } }) {
+export default function OderDetailsPage({ params: { id } }) {
 
     const [orders, setorders] = useState([]);
 
@@ -24,16 +24,16 @@ export default async function OderDetailsPage({ params: { id } }) {
           setorders(fetchedOrders);
          
         };
-    
+        
         fetchAndSetOrders();
-        console.log(orders)
+       
       }, []);
     
 
     return (
         <div className="m-2">
-            hello in more details
-            {/* <h1 className="text-2xl grid justify-items-center font-bold py-5">Order's Detal Page</h1>
+           
+            <h1 className="text-2xl grid justify-items-center font-bold py-5">Order's Detal Page</h1>
 
             <div className="flex bg-slate-200 rounded p-2">
                 <h1 className="font-bold mr-1">ID: </h1>
@@ -44,35 +44,35 @@ export default async function OderDetailsPage({ params: { id } }) {
 
             <div className="flex bg-slate-200 rounded p-2">
                 <h1 className="font-bold mr-1">Email: </h1>
-                {data.userId}
+                {orders.userId}
             </div>
 
             <div className="flex bg-slate-200 rounded p-2">
                 <h1 className="font-bold mr-1">Phone: </h1>
-                {data.phone}
+                {orders.phone}
             </div>
 
             <h1 className="text-xl grid justify-items-center font-bold m-1">Address Details</h1>
 
             <div className="flex bg-slate-200 rounded p-2">
                 <h1 className="font-bold mr-1">Province: </h1>
-                {data.province}
+                {orders.province}
             </div>
 
             <div className="flex bg-slate-200 rounded p-2">
                 <h1 className="font-bold mr-1">City: </h1>
-                {data.city}
+                {orders.city}
             </div>
 
             <div className="flex bg-slate-200 rounded p-2">
                 <h1 className="font-bold mr-1">Address: </h1>
-                {data.address}
+                {orders.address}
             </div>
 
 
             <h1 className = "text-xl grid justify-items-center font-bold m-1">Order Items</h1>
             {
-                data.products.map((product, index) => (
+                orders.products.map((product, index) => (
             <div key = {index} className="bg-slate-200 rounded p-2 m-1">
                         
                         <div className="flex">
@@ -96,7 +96,7 @@ export default async function OderDetailsPage({ params: { id } }) {
                         </div>
                     </div>
                 ))
-            } */}
+            }
 
         </div>
     )

@@ -5,18 +5,23 @@ import Image from "next/image";
 
 import { useEffect, useState } from "react";
 
-import { AiFillDelete, AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+// import { AiFillDelete, AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
 
 
-const ImageUploader = ({ handleSetImages }) => {
-    const [selectedImages, setSelectedImages] = useState([]);
+const ImageUploader = ({orignalImages, handleSetImages }) => {
+    const [selectedImages, setSelectedImages] = useState(orignalImages);
 
+    useEffect(()=>{
+        setSelectedImages(orignalImages);
+    }, [orignalImages]);
+    
     useEffect(()=>{
         
         handleSetImages(selectedImages);
 
     },[selectedImages]);
+
 
     const handleImageChange = (event) => {
         const files = event.target.files;
@@ -83,27 +88,28 @@ const ImageUploader = ({ handleSetImages }) => {
                             <img
                                 src={image}
                                 alt={`Preview ${index}`}
-
-                                
                             />
                             <div className="hidden group-hover:block absolute bottom-0 left-2">
                                 <button
                                     className="m-1 p-1 border rounded bg-slate-200 text-red-400 text-sm"
                                     onClick={() => handleRemoveImage(index)}
                                 >
-                                    <AiFillDelete />
+                                    {/* <AiFillDelete /> */}
+                                    D
                                 </button>
                                 <button
                                     className="m-1 p-1 border rounded bg-slate-200 text-sm"
                                     onClick={() => handleShiftImageLeft(index)}
                                 >
-                                    <AiOutlineArrowLeft />
+                                    {/* <AiOutlineArrowLeft /> */}
+                                    {"<"}
                                 </button>
                                 <button
                                     className="m-1 p-1 border rounded bg-slate-200 text-sm"
                                     onClick={() => handleShiftImageRight(index)}
                                 >
-                                    <AiOutlineArrowRight />
+                                    {/* <AiOutlineArrowRight /> */}
+                                    {">"}
                                 </button>
                             </div>
                         </div>

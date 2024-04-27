@@ -3,11 +3,11 @@ import { NextResponse } from "next/server";
 import db from "@/config/connectToDb"
 
 export async function POST(request) {
-  const { productId, title, description, price, imgs, category } = await request.json();
+  const { productId, title, description, price, imgs, category, hasVarients, varients } = await request.json();
 
   //  console.log( productId, title, description, price, imgs, category, qty)
   await db.connect();
-  await Products.create({ productId, title, description, price, category, imgs });
+  await Products.create({ productId, title, description, price, category, imgs, hasVarients, varients });
   return NextResponse.json({ message: "Product Created" }, { status: 201 });
 }
 
@@ -48,10 +48,10 @@ export async function GET(request) {
 
 export async function PUT(request) {
   try {
-    const { _id, title, description, price, imgs } = await request.json();
-    // console.log( _id, title, description, price, imgs);
+    const { _id, title, description, price, imgs, hasVarients, varients } = await request.json();
+    //console.log( _id, title, description, price, hasVarients, varients);
 
-    if (!_id || !title || !description || !price || !imgs) {
+    if (!_id || !title || !description || !price || !imgs || !varients) {
       return NextResponse.error(404, 'Product not found');
     }
 
@@ -63,8 +63,11 @@ export async function PUT(request) {
       description,
       price,
       imgs,
+      hasVarients,
+      varients,
     });
 
+    //console.log(updatedProduct);
 
     return NextResponse.json({ message: 'Product updated' });
   } catch (error) {

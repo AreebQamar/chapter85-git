@@ -28,6 +28,7 @@ export default function ProductEdit() {
     const [filteredProducts, setFilteredProducts] = useState([]);
 
     const [updatedProduct, setUpdatedProduct] = useState(null);
+    const [tempSize, setTempSize] = useState("");
 
     const handleSetImags = async (newImgs) => {
 
@@ -64,6 +65,8 @@ export default function ProductEdit() {
             title: product.title,
             description: product.description,
             price: product.price,
+            hasVarients: product.hasVarients,
+            varients: product.varients
         });
     };
 
@@ -80,6 +83,9 @@ export default function ProductEdit() {
             updatedProducts[productIndex].description = updatedProduct.description;
             updatedProducts[productIndex].price = updatedProduct.price;
             updatedProducts[productIndex].imgs = updatedProduct.imgs;
+            updatedProducts[productIndex].hasVarients = updatedProduct.hasVarients;
+            updatedProducts[productIndex].varients = updatedProduct.varients;
+
 
             // Update the products state with the new array
             // console.log(updatedProducts[productIndex]);
@@ -128,39 +134,39 @@ export default function ProductEdit() {
     const handleDeleteProduct = () => {
         // Send a POST request to update the product details
         // console.log(updatedProduct);
-      
-        axios.delete('/api/products', {
+
+        axios.delete('/api/product', {
             data: { productId: updatedProduct._id },
-          })
+        })
             .then((response) => {
                 // console.log('Product updated:', response.data.message);
                 toast.success('Product Deleted',
-                {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
+                    {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
 
                 setProducts((prevProducts) => prevProducts.filter(product => product._id !== updatedProduct._id));
 
             }).catch((error) => {
                 console.error('Error Deleting product:', error);
                 toast.error('Delete Failed',
-                {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
+                    {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
                 // Handle errors, e.g., show an error message
             });
     };
@@ -206,13 +212,13 @@ export default function ProductEdit() {
 
                         <div className='flex justify-center m-2'>
 
-                        <button
-                            onClick={handleDeleteProduct}
-                            className="bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg py-2 px-4"
+                            <button
+                                onClick={handleDeleteProduct}
+                                className="bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg py-2 px-4"
                             >
-                            Delete Product
-                        </button>
-                            </div>
+                                Delete Product
+                            </button>
+                        </div>
 
                         <h2 className="text-lg font-semibold mb-2">Edit Product: {updatedProduct.title}</h2>
 
@@ -243,6 +249,51 @@ export default function ProductEdit() {
                             onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })}
                             className="border border-gray-300 rounded-lg py-2 px-4 w-full mb-2"
                         />
+
+
+                        <div>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={updatedProduct.hasVarients}
+                                    onChange={()=>{
+                                        setUpdatedProduct({...updatedProduct, hasVarients: !updatedProduct.hasVarients})
+                                    }}
+                                />
+                                Has Variants
+                            </label>
+                            {
+
+                                updatedProduct.hasVarients && (
+                                    <div className='m-5'>
+                                        <h1 className='font-bold text-lg'>Size Chart: </h1>
+                                        <div className='bg-gray-200 p-2'>
+                                            {
+                                                updatedProduct.varients.map((size, index) => {
+                                                    return (
+                                                        <h1 key={index}>{size}</h1>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        <label htmlFor="size adder" className="leading-7 text-sm text-gray-600">Size</label>
+                                        <input type="size adder" id="size adder" name="size adder"
+                                            className="w-full bg-yellow-50 bg-opacity-50 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-200 focus:border-orange-800 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+
+                                            value={tempSize}
+                                            onChange={(e) => { setTempSize(e.target.value) }} />
+                                        <button className="bg-slate-200 border rounded my-3 mx-1 p-1 text-sm"
+                                            onClick={()=>{
+                                                setUpdatedProduct({...updatedProduct, varients:[...updatedProduct.varients, tempSize]})
+                                            }}
+                                        >
+                                            add size
+                                        </button>
+                                    </div>
+                                )
+                            }
+                        </div>
+
 
                         <button
                             onClick={handleUpdateProduct}

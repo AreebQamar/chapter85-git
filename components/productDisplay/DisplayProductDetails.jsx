@@ -42,10 +42,25 @@ export default function DisplayProductDetails({ id }) {
         return <LoadingPage />
     }
 
+    const addToCartButtonHandler = () => {
+        addToCart(id, productDetails.title, productDetails.price);
+        toast.success('🦄 item added to cart',
+            {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+    }
+    
     //console.log(thisProduct);
 
-    const addToCartButtonHandler = () => {
-        //console.log(selection);
+    // const addToCartButtonHandler = () => {
+    //     //console.log(selection);
     //     if (selection?.selectedColor && selection?.selectedSize) {
     //         //const { selectedColor, selectedSize } = selection;
     //         addToCart(id, thisProduct.title, selection, thisProduct.price);
@@ -74,7 +89,7 @@ export default function DisplayProductDetails({ id }) {
     //                 theme: "dark",
     //             });
     //     }
-     }
+    //  }
 
 
     // const setSelectionHandler = (selection) => {
@@ -156,7 +171,7 @@ export default function DisplayProductDetails({ id }) {
 
                         {/* <DisplayVarients varients={thisProduct.varients} setSelectionHandler={setSelectionHandler} /> */}
 
-                        <div className="flex">
+                        <div className="mt-2 flex">
                             <span className="title-font font-medium text-2xl text-gray-900">${productDetails?.price}</span>
                             <button onClick={() => { addToCartButtonHandler(); }}
                                 className="flex ml-auto text-white bg-orange-800 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded">

@@ -11,9 +11,12 @@ const productsSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String },
     price: { type: Number, required: true },
-
     category: { type: String, required: true},
     
+    hasVarients: {type: Boolean, default: false},
+    varients: [
+        { type: String, default: ""},
+    ],
     // qty: {type: Number, required: true},
 
 }, { timestamps: true });

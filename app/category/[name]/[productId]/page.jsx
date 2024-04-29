@@ -1,4 +1,4 @@
-import DisplayProductDetails from "@/components/productDisplay/displayProductDetails";
+import DisplayProductDetails from "@/components/productDisplay/displayProductDetails.jsx";
 
 
 export default function ProductDetailPage({params:{productId}}){

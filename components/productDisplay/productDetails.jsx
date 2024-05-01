@@ -9,6 +9,8 @@ import { CartContext } from "@/context/cartContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { MdOutlineIosShare } from "react-icons/md";
+
 import LoadingPage from "@/app/category/[name]/[productId]/loadingPage";
 import ImageViewer from "./imagesViewer";
 
@@ -47,31 +49,20 @@ export default function DisplayProductDetails({ id }) {
 
     const addToCartButtonHandler = () => {
         //console.log(selection);
-        if (selection) {
-            // console.log(selection);
-            toast.warn('we are currently working on "add to cart" feature, STAY TUNED!!',
-                {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
-            // addToCart(id, thisProduct.title, selection, thisProduct.price);
-            // toast.success('🦄 item added to cart',
-            //     {
-            //         position: "top-right",
-            //         autoClose: 2000,
-            //         hideProgressBar: false,
-            //         closeOnClick: true,
-            //         pauseOnHover: true,
-            //         draggable: true,
-            //         progress: undefined,
-            //         theme: "dark",
-            //     });
+        if (!productDetails.hasVarients || selection) {
+            console.log(selection);
+            addToCart(id, productDetails.title, selection, productDetails.price);
+            toast.success('🦄 item added to cart',
+            {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
         else {
             toast.warn('please select a size',
@@ -86,7 +77,7 @@ export default function DisplayProductDetails({ id }) {
                     theme: "dark",
                 });
         }
-     }
+    }
 
 
     // const setSelectionHandler = (selection) => {
@@ -139,7 +130,9 @@ export default function DisplayProductDetails({ id }) {
                             </span>
                             {/* social media buttons */}
                             <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
-                                <a className="text-gray-800">
+
+                                <MdOutlineIosShare />
+                                {/* <a className="text-gray-800">
                                     <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
                                         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
                                     </svg>
@@ -153,7 +146,7 @@ export default function DisplayProductDetails({ id }) {
                                     <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
                                         <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
                                     </svg>
-                                </a>
+                                </a> */}
                             </span>
                         </div>
 
@@ -168,8 +161,8 @@ export default function DisplayProductDetails({ id }) {
                                     {
                                         productDetails.varients.map((size, index) => (
                                             <div key={index} className="w-1/3">
-                                                <div  className={`m-2 border-2 border-brown text-brown text-center hover:cursor-pointer ${selection==size? 'bg-orange-300': ""}`}
-                                                onClick={()=>{setSelection(size)}}
+                                                <div className={`m-2 border-2 border-brown text-brown text-center hover:cursor-pointer ${selection == size ? 'bg-orange-300' : ""}`}
+                                                    onClick={() => { setSelection(size) }}
                                                 >
                                                     {size}
                                                 </div>

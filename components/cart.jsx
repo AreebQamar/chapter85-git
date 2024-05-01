@@ -48,9 +48,8 @@ export default function Cart({ handleCloseCart }) {
                                 Object.keys(cart).map((key) =>
                                     <div key={key} className="m-1 p-1 bg-yellow-50 border borfer-slate-200 rounded ">
                                         <div>{cart[key].name}</div>
-                                        <div>{cart[key].varient?.selectedColor}</div>
-                                        <div>{cart[key].varient?.selectedSize}</div>
-                                        <div>{cart[key].price}</div>
+                                        <div>{cart[key].varient}</div>
+                                        <div>price: {cart[key].price}</div>
                                         <div className="flex justify-center items-center">
                                             <div onClick={function () { addToCart(key, cart[key].name, cart[key].varient, cart[key].price) }}>
                                                 <div className="pr-5 text-orange-800"><MdAddCircle /></div>

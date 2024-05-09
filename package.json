@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^4.23.5",
     "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
+    "framer-motion": "^11.1.9",
     "git": "^0.1.5",
     "mongoose": "^7.3.2",
     "next": "13.4.8",

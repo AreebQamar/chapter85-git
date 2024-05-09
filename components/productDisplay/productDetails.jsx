@@ -50,7 +50,7 @@ export default function DisplayProductDetails({ id }) {
     const addToCartButtonHandler = () => {
         //console.log(selection);
         if (!productDetails.hasVarients || selection) {
-            console.log(selection);
+            //console.log(selection);
             addToCart(id, productDetails.title, selection, productDetails.price);
             toast.success('🦄 item added to cart',
             {
